@@ -19,19 +19,12 @@ import { openDNDSettings } from '../../services/systemService';
 export default function DashboardScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
-<<<<<<< HEAD
   const { apps, selectedApps, toggleApp, removeApp, reloadApps } = useApps();
-  const { isBoosting, isLoading, stats, startBoost, stopBoost, loadStats } = useBoostContext();
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [isScanning, setIsScanning] = useState(false);
-
-=======
-  const { apps, selectedApps, toggleApp, removeApp } = useApps();
   const { isBoosting, isLoading, stats, startBoost, stopBoost, loadStats, clearCache } = useBoostContext();
   const [showAddModal, setShowAddModal] = useState(false);
+  const [isScanning, setIsScanning] = useState(false);
   const [tutorialType, setTutorialType] = useState<'cache' | 'notification' | 'overlay' | null>(null);
   
->>>>>>> c80604cd0b49d91c0d99829901bb646c664d2781
   useEffect(() => {
     loadStats();
   }, [loadStats]);
