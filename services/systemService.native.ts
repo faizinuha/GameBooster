@@ -1,22 +1,24 @@
-import * as FileSystem from 'expo-file-system';
+import * as FileSystem from 'expo-file-system/legacy';
 import { Platform, Linking } from 'react-native';
 import * as Device from 'expo-device';
-import { IntentLauncher } from 'expo-intent-launcher';
+import * as IntentLauncher from 'expo-intent-launcher';
 
 // Clear app's own cache
 export async function clearOwnCache(): Promise<number> {
   try {
-    const cacheDir = FileSystem.cacheDirectory;
+    const cacheDir = (FileSystem as any).cacheDirectory || (FileSystem as any).Paths?.cache?.uri;
     if (!cacheDir) return 0;
     
     // Get cache size before clearing
     const cacheSize = await getCacheSize();
     
-    // Delete cache directory
-    await FileSystem.deleteAsync(cacheDir, { idempotent: true });
-    
-    // Recreate empty cache directory
-    await FileSystem.makeDirectoryAsync(cacheDir, { intermediates: true });
+    // Read contents and delete individually to avoid deleting the protected root cache folder
+    const contents = await FileSystem.readDirectoryAsync(cacheDir);
+    for (const item of contents) {
+      const itemPath = cacheDir.endsWith('/') ? `${cacheDir}${item}` : `${cacheDir}/${item}`;
+      await FileSystem.deleteAsync(itemPath, { idempotent: true });
+    }
+
     
     return cacheSize;
   } catch (error) {
@@ -28,7 +30,7 @@ export async function clearOwnCache(): Promise<number> {
 // Get current cache size in MB
 export async function getCacheSize(): Promise<number> {
   try {
-    const cacheDir = FileSystem.cacheDirectory;
+    const cacheDir = (FileSystem as any).cacheDirectory || (FileSystem as any).Paths?.cache?.uri;
     if (!cacheDir) return 0;
     
     const info = await FileSystem.getInfoAsync(cacheDir);
@@ -37,7 +39,7 @@ export async function getCacheSize(): Promise<number> {
       return Math.round((info.size || 0) / (1024 * 1024));
     }
     return 0;
-  } catch (error) {
+  } catch {
     return 0;
   }
 }

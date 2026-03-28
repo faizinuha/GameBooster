@@ -65,7 +65,7 @@ export const FloatingBubble = ({ onToggleBoost, onNavigateDashboard }: FloatingB
         }
       },
     })
-  ).useRef;
+  ).current;
   
   if (isMinimized) {
     return (

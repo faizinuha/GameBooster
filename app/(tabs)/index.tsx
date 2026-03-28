@@ -15,6 +15,7 @@ import { FloatingBubble } from '../../components/overlay/FloatingBubble';
 import { SystemStats } from '../../components/system/SystemStats';
 import { TutorialModal } from '../../components/system/TutorialModal';
 import { openDNDSettings } from '../../services/systemService';
+import { PingDisplay } from '../../components/network/PingDisplay';
 
 export default function DashboardScreen() {
   const insets = useSafeAreaInsets();
@@ -54,13 +55,16 @@ export default function DashboardScreen() {
             <Text style={styles.greeting}>Core Engine</Text>
             <Text style={styles.subtitle}>System performance optimized</Text>
           </View>
-          <Pressable onPress={handleScan} style={styles.scanButton}>
-            <MaterialIcons 
-              name={isScanning ? "sync" : "security"} 
-              size={24} 
-              color={isScanning ? theme.colors.accent : theme.colors.text} 
-            />
-          </Pressable>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+            <PingDisplay />
+            <Pressable onPress={handleScan} style={styles.scanButton}>
+              <MaterialIcons 
+                name={isScanning ? "sync" : "security"} 
+                size={24} 
+                color={isScanning ? theme.colors.accent : theme.colors.text} 
+              />
+            </Pressable>
+          </View>
         </View>
         
         {/* System Monitor */}

@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "GameBooster",
-    "slug": "GameBooster",
+    "slug": "gamebooster-pro",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/logo.png",
@@ -42,6 +42,13 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "be6e7ccf-c088-4a27-a548-89c29a1af211"
+      }
+    },
+    "owner": "gamebosster"
   }
 }

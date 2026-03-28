@@ -1,7 +1,8 @@
 import { NativeModules, Platform, Linking } from 'react-native';
-import * as FileSystem from 'expo-file-system';
+import * as FileSystem from 'expo-file-system/legacy';
 import * as IntentLauncher from 'expo-intent-launcher';
 import RNInstalledApplication from 'react-native-installed-application';
+
 
 const { NotificationManager, CacheCleaner } = NativeModules;
 
@@ -18,15 +19,44 @@ export const NativeManager = {
    * Mengambil daftar aplikasi yang terinstall (Android only)
    */
   async getInstalledApps(): Promise<AppInfo[]> {
-    if (Platform.OS !== 'android') return [];
+    if (Platform.OS !== 'android') {
+      console.warn('getInstalledApps only works on Android');
+      return [];
+    }
     try {
+      console.log('Fetching installed apps...');
+      
+      // Check if native module exists
+      if (!NativeModules.RNInstalledApplication) {
+        console.warn('NativeModules.RNInstalledApplication is not available. Ensure you are using a Development Build, not Expo Go.');
+        
+        // Fallback mockup in development if real module isn't there
+        if (__DEV__) {
+          console.log('Using mock apps for development testing...');
+          return [
+            { id: 'com.mobile.legends', name: 'Mobile Legends', packageName: 'com.mobile.legends', icon: '', isGame: true },
+            { id: 'com.garena.game.kgid', name: 'Arena of Valor', packageName: 'com.garena.game.kgid', icon: '', isGame: true },
+            { id: 'com.pubg.imobile', name: 'PUBG Mobile', packageName: 'com.pubg.imobile', icon: '', isGame: true },
+            { id: 'com.tencent.ig', name: 'PUBG Global', packageName: 'com.tencent.ig', icon: '', isGame: true },
+            { id: 'com.dts.freefireth', name: 'Free Fire', packageName: 'com.dts.freefireth', icon: '', isGame: true },
+          ];
+        }
+        return [];
+      }
+      
       const apps = await RNInstalledApplication.getApps();
+      console.log(`Found ${apps ? apps.length : 0} apps`);
+      
+      if (!apps || apps.length === 0) {
+        return [];
+      }
+
       return apps.map((app: any) => ({
         id: app.packageName,
-        name: app.appName,
+        name: app.appName || app.packageName,
         packageName: app.packageName,
-        icon: app.icon,
-        isGame: app.category === 'GAME',
+        icon: app.icon || '',
+        isGame: app.category === 'GAME' || app.packageName.includes('game') || app.appName?.toLowerCase().includes('game'),
       }));
     } catch (error) {
       console.error('Failed to get apps:', error);
@@ -38,10 +68,14 @@ export const NativeManager = {
    * Menghapus cache aplikasi sendiri (Expo standard)
    */
   async clearOwnCache(): Promise<void> {
-    const cacheDir = FileSystem.cacheDirectory;
+    const cacheDir = (FileSystem as any).cacheDirectory || (FileSystem as any).Paths?.cache?.uri;
     if (cacheDir) {
       try {
-        await FileSystem.deleteAsync(cacheDir, { idempotent: true });
+        const contents = await FileSystem.readDirectoryAsync(cacheDir);
+        for (const item of contents) {
+          const itemPath = cacheDir.endsWith('/') ? `${cacheDir}${item}` : `${cacheDir}/${item}`;
+          await FileSystem.deleteAsync(itemPath, { idempotent: true });
+        }
         console.log('Cache aplikasi dihapus.');
       } catch (e) {
         console.error('Failed to clear own cache:', e);
@@ -73,7 +107,7 @@ export const NativeManager = {
    * Meminta akses Notification Listener
    */
   async requestNotificationAccess(): Promise<boolean> {
-    if (Platform.OS !== 'android') return false;
+    if (Platform.OS !== 'android' || !NotificationManager) return false;
     try {
       return await NotificationManager.requestNotificationAccess();
     } catch (e) {
@@ -86,7 +120,10 @@ export const NativeManager = {
    * Mengaktifkan/menonaktifkan pemblokiran notifikasi
    */
   async setNotificationBlocking(enabled: boolean): Promise<boolean> {
-    if (Platform.OS !== 'android') return false;
+    if (Platform.OS !== 'android' || !NotificationManager) {
+      console.warn('NativeModules.NotificationManager is not available on this build.');
+      return false;
+    }
     try {
       if (enabled) {
         return await NotificationManager.enableNotificationBlocking();
