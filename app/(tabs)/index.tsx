@@ -12,15 +12,26 @@ import { BoostControl } from '../../components/dashboard/BoostControl';
 import { AppCard } from '../../components/dashboard/AppCard';
 import { AddAppModal } from '../../components/dashboard/AddAppModal';
 import { FloatingBubble } from '../../components/overlay/FloatingBubble';
+import { SystemStats } from '../../components/system/SystemStats';
+import { TutorialModal } from '../../components/system/TutorialModal';
+import { openDNDSettings } from '../../services/systemService';
 
 export default function DashboardScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
+<<<<<<< HEAD
   const { apps, selectedApps, toggleApp, removeApp, reloadApps } = useApps();
   const { isBoosting, isLoading, stats, startBoost, stopBoost, loadStats } = useBoostContext();
   const [showAddModal, setShowAddModal] = useState(false);
   const [isScanning, setIsScanning] = useState(false);
 
+=======
+  const { apps, selectedApps, toggleApp, removeApp } = useApps();
+  const { isBoosting, isLoading, stats, startBoost, stopBoost, loadStats, clearCache } = useBoostContext();
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [tutorialType, setTutorialType] = useState<'cache' | 'notification' | 'overlay' | null>(null);
+  
+>>>>>>> c80604cd0b49d91c0d99829901bb646c664d2781
   useEffect(() => {
     loadStats();
   }, [loadStats]);
@@ -59,6 +70,11 @@ export default function DashboardScreen() {
           </Pressable>
         </View>
         
+        {/* System Monitor */}
+        <View style={styles.section}>
+          <SystemStats enabled={isBoosting} />
+        </View>
+        
         {/* Stats */}
         {stats && (
           <View style={styles.statsContainer}>
@@ -76,6 +92,64 @@ export default function DashboardScreen() {
             />
           </View>
         )}
+        
+        {/* Quick Actions */}
+        <View style={styles.section}>
+          <Text style={styles.sectionTitle}>Quick Actions</Text>
+          
+          <View style={styles.actionsGrid}>
+            <Pressable
+              style={({ pressed }) => [
+                styles.actionCard,
+                pressed && styles.actionPressed,
+              ]}
+              onPress={clearCache}
+              disabled={isLoading}
+            >
+              <MaterialIcons name="cleaning-services" size={24} color={theme.colors.primary} />
+              <Text style={styles.actionTitle}>Clear Cache</Text>
+              <Text style={styles.actionSubtitle}>Bersihkan cache app</Text>
+            </Pressable>
+            
+            <Pressable
+              style={({ pressed }) => [
+                styles.actionCard,
+                pressed && styles.actionPressed,
+              ]}
+              onPress={() => openDNDSettings()}
+            >
+              <MaterialIcons name="do-not-disturb-on" size={24} color={theme.colors.warning} />
+              <Text style={styles.actionTitle}>Do Not Disturb</Text>
+              <Text style={styles.actionSubtitle}>Block notifikasi</Text>
+            </Pressable>
+          </View>
+          
+          <View style={styles.actionsGrid}>
+            <Pressable
+              style={({ pressed }) => [
+                styles.actionCard,
+                pressed && styles.actionPressed,
+              ]}
+              onPress={() => setTutorialType('cache')}
+            >
+              <MaterialIcons name="help-outline" size={24} color={theme.colors.textSecondary} />
+              <Text style={styles.actionTitle}>Tutorial Cache</Text>
+              <Text style={styles.actionSubtitle}>Cara manual</Text>
+            </Pressable>
+            
+            <Pressable
+              style={({ pressed }) => [
+                styles.actionCard,
+                pressed && styles.actionPressed,
+              ]}
+              onPress={() => setTutorialType('overlay')}
+            >
+              <MaterialIcons name="bubble-chart" size={24} color={theme.colors.textSecondary} />
+              <Text style={styles.actionTitle}>Tutorial Bubble</Text>
+              <Text style={styles.actionSubtitle}>Enable overlay</Text>
+            </Pressable>
+          </View>
+        </View>
         
         {/* Boost Control */}
         <View style={styles.section}>
@@ -140,6 +214,13 @@ export default function DashboardScreen() {
           onNavigateDashboard={() => router.push('/(tabs)')}
         />
       )}
+      
+      {/* Tutorial Modal */}
+      <TutorialModal
+        visible={tutorialType !== null}
+        type={tutorialType}
+        onClose={() => setTutorialType(null)}
+      />
     </View>
   );
 }
@@ -250,5 +331,34 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSize.sm,
     color: theme.colors.textMuted,
     marginTop: theme.spacing.xs,
+  },
+  actionsGrid: {
+    flexDirection: 'row',
+    gap: theme.spacing.md,
+    marginBottom: theme.spacing.md,
+  },
+  actionCard: {
+    flex: 1,
+    backgroundColor: theme.colors.surface,
+    padding: theme.spacing.md,
+    borderRadius: theme.borderRadius.lg,
+    borderWidth: 1,
+    borderColor: theme.colors.border,
+    alignItems: 'center',
+    gap: theme.spacing.xs,
+  },
+  actionPressed: {
+    opacity: 0.7,
+  },
+  actionTitle: {
+    fontSize: theme.fontSize.sm,
+    fontWeight: theme.fontWeight.semibold,
+    color: theme.colors.text,
+    textAlign: 'center',
+  },
+  actionSubtitle: {
+    fontSize: theme.fontSize.xs,
+    color: theme.colors.textMuted,
+    textAlign: 'center',
   },
 });
