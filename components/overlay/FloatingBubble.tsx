@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
-import { View, StyleSheet, Pressable, Animated, PanResponder, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, Pressable, Modal, Animated, PanResponder, Dimensions } from 'react-native';
+import { BlurView } from 'expo-blur';
 import { MaterialIcons } from '@expo/vector-icons';
 import { theme } from '../../constants/theme';
 import { QuickActionsMenu } from './QuickActionsMenu';
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
     width: BUBBLE_SIZE,
     height: BUBBLE_SIZE,
     borderRadius: BUBBLE_SIZE / 2,
-    backgroundColor: theme.colors.primary,
+    backgroundColor: 'rgba(255, 255, 255, 0.1)',
     alignItems: 'center',
     justifyContent: 'center',
     shadowColor: '#000',
@@ -138,8 +139,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 8,
     elevation: 8,
-    borderWidth: 3,
-    borderColor: theme.colors.background,
+    borderWidth: 1.5,
+    borderColor: 'rgba(255, 255, 255, 0.2)',
   },
   minimizedBubble: {
     position: 'absolute',

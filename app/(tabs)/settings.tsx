@@ -6,6 +6,7 @@ import { useAlert } from '../../template';
 import { theme } from '../../constants/theme';
 import { commonStyles } from '../../constants/styles';
 import { useBoostContext } from '../../hooks/useBoostContext';
+import { NativeManager } from '../../services/NativeManager';
 
 interface SettingItemProps {
   icon: keyof typeof MaterialIcons.glyphMap;
@@ -66,7 +67,17 @@ export default function SettingsScreen() {
     await loadStats();
     showAlert(
       'Penyimpanan',
-      `Total cache dibersihkan: ${stats?.cacheCleared || 0}MB\nNotifikasi diblokir: ${stats?.notificationsBlocked || 0}`
+      `Total cache dibersihkan: ${stats?.cacheCleared || 0}MB\nNotifikasi diblokir: ${stats?.notificationsBlocked || 0}`,
+      [
+        { text: 'Tutup', style: 'cancel' },
+        { 
+          text: 'Hapus Semua Lagi', 
+          onPress: async () => {
+            await NativeManager.clearOwnCache();
+            showAlert('Info', 'Cache internal berhasil dibersihkan.');
+          } 
+        }
+      ]
     );
   };
   

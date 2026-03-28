@@ -16,13 +16,20 @@ import { FloatingBubble } from '../../components/overlay/FloatingBubble';
 export default function DashboardScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  const { apps, selectedApps, toggleApp, removeApp } = useApps();
+  const { apps, selectedApps, toggleApp, removeApp, reloadApps } = useApps();
   const { isBoosting, isLoading, stats, startBoost, stopBoost, loadStats } = useBoostContext();
   const [showAddModal, setShowAddModal] = useState(false);
-  
+  const [isScanning, setIsScanning] = useState(false);
+
   useEffect(() => {
     loadStats();
   }, [loadStats]);
+
+  const handleScan = async () => {
+    setIsScanning(true);
+    await reloadApps();
+    setTimeout(() => setIsScanning(false), 2000);
+  };
   
   const handleBoost = async () => {
     if (selectedApps.length > 0) {
@@ -40,15 +47,16 @@ export default function DashboardScreen() {
         {/* Header */}
         <View style={styles.header}>
           <View>
-            <Text style={styles.greeting}>Game Booster</Text>
-            <Text style={styles.subtitle}>Optimasi performa maksimal</Text>
+            <Text style={styles.greeting}>Core Engine</Text>
+            <Text style={styles.subtitle}>System performance optimized</Text>
           </View>
-          <View style={styles.statusBadge}>
-            <View style={[styles.statusDot, isBoosting && styles.statusDotActive]} />
-            <Text style={styles.statusText}>
-              {isBoosting ? 'Aktif' : 'Standby'}
-            </Text>
-          </View>
+          <Pressable onPress={handleScan} style={styles.scanButton}>
+            <MaterialIcons 
+              name={isScanning ? "sync" : "security"} 
+              size={24} 
+              color={isScanning ? theme.colors.accent : theme.colors.text} 
+            />
+          </Pressable>
         </View>
         
         {/* Stats */}
@@ -175,6 +183,16 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSize.sm,
     fontWeight: theme.fontWeight.medium,
     color: theme.colors.text,
+  },
+  scanButton: {
+    width: 48,
+    height: 48,
+    borderRadius: 24,
+    backgroundColor: theme.colors.surface,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderWidth: 1,
+    borderColor: theme.colors.border,
   },
   statsContainer: {
     flexDirection: 'row',

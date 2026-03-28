@@ -1,86 +1,66 @@
 import { AppItem, BoostStats } from '../types';
+import { NativeManager } from './NativeManager';
 
-// Mock system apps - In production, this would use native modules
+/**
+ * Mengambil daftar aplikasi terinstall dari device
+ */
 export const getInstalledApps = async (): Promise<AppItem[]> => {
-  // Simulate API delay
-  await new Promise(resolve => setTimeout(resolve, 500));
+  const apps = await NativeManager.getInstalledApps();
   
-  return [
-    {
-      id: '1',
-      name: 'Mobile Legends',
-      packageName: 'com.mobile.legends',
-      isGame: true,
-      cacheSize: 245,
-      notificationsEnabled: true,
-    },
-    {
-      id: '2',
-      name: 'PUBG Mobile',
-      packageName: 'com.pubg.mobile',
-      isGame: true,
-      cacheSize: 512,
-      notificationsEnabled: true,
-    },
-    {
-      id: '3',
-      name: 'Free Fire',
-      packageName: 'com.garena.freefire',
-      isGame: true,
-      cacheSize: 189,
-      notificationsEnabled: true,
-    },
-    {
-      id: '4',
-      name: 'Genshin Impact',
-      packageName: 'com.mihoyo.genshin',
-      isGame: true,
-      cacheSize: 892,
-      notificationsEnabled: false,
-    },
-    {
-      id: '5',
-      name: 'WhatsApp',
-      packageName: 'com.whatsapp',
-      isGame: false,
-      cacheSize: 156,
-      notificationsEnabled: true,
-    },
-    {
-      id: '6',
-      name: 'Instagram',
-      packageName: 'com.instagram',
-      isGame: false,
-      cacheSize: 234,
-      notificationsEnabled: true,
-    },
-  ];
+  return apps.map(app => ({
+    id: app.id,
+    name: app.name,
+    packageName: app.packageName,
+    isGame: app.isGame,
+    cacheSize: 0, // OS tidak memberi info ini langsung tanpa permission khusus
+    notificationsEnabled: true,
+    icon: app.icon
+  }));
 };
 
-export const clearAppCache = async (appId: string): Promise<boolean> => {
-  await new Promise(resolve => setTimeout(resolve, 300));
-  return true;
+/**
+ * Menghapus cache aplikasi (membuka settings atau native module)
+ */
+export const clearAppCache = async (packageName: string): Promise<boolean> => {
+  try {
+    await NativeManager.clearAppCache(packageName);
+    return true;
+  } catch (e) {
+    return false;
+  }
 };
 
+/**
+ * Menghapus all cache (own cache dan simulasi)
+ */
 export const clearAllCache = async (appIds: string[]): Promise<number> => {
+  // Clear own cache dulu
+  await NativeManager.clearOwnCache();
+  
+  // Simulasi clearing logic
   await new Promise(resolve => setTimeout(resolve, 1000));
-  // Return total MB cleared
   return Math.floor(Math.random() * 500) + 200;
 };
 
+/**
+ * Mematikan notifikasi untuk daftar aplikasi (Native blocking)
+ */
 export const disableNotifications = async (appIds: string[]): Promise<boolean> => {
-  await new Promise(resolve => setTimeout(resolve, 500));
-  return true;
+  return await NativeManager.setNotificationBlocking(true);
 };
 
+/**
+ * Mengaktifkan kembali notifikasi
+ */
 export const enableNotifications = async (appIds: string[]): Promise<boolean> => {
-  await new Promise(resolve => setTimeout(resolve, 500));
-  return true;
+  return await NativeManager.setNotificationBlocking(false);
 };
 
+/**
+ * Mengambil stats boosting
+ */
 export const getBoostStats = async (): Promise<BoostStats> => {
-  await new Promise(resolve => setTimeout(resolve, 300));
-  
+  // Dalam simulasi ini kita tetap pakai real-looking data
   return {
     cacheCleared: 1247,
     appsOptimized: 12,
@@ -88,3 +68,4 @@ export const getBoostStats = async (): Promise<BoostStats> => {
     memoryFreed: 2048,
   };
 };
+

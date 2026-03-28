@@ -8,6 +8,7 @@ import { NotificationItem } from '../../types';
 import { getNotifications, clearNotification, clearAllNotifications } from '../../services/notificationService';
 import { CategoryTabs } from '../../components/notifications/CategoryTabs';
 import { NotificationCard } from '../../components/notifications/NotificationCard';
+import { NativeManager } from '../../services/NativeManager';
 
 type Category = 'all' | 'social' | 'custom';
 
@@ -42,17 +43,41 @@ export default function NotificationsScreen() {
     await clearAllNotifications();
     setNotifications([]);
   };
+
+  const [isBlockingEnabled, setIsBlockingEnabled] = useState(false);
+
+  const toggleBlocking = async () => {
+    const success = await NativeManager.setNotificationBlocking(!isBlockingEnabled);
+    if (success) {
+      setIsBlockingEnabled(!isBlockingEnabled);
+    } else {
+      // If failed, maybe need permission
+      await NativeManager.requestNotificationAccess();
+    }
+  };
   
   return (
     <View style={[commonStyles.container, { paddingTop: insets.top }]}>
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.title}>Notifikasi</Text>
-        {notifications.length > 0 && (
-          <Pressable onPress={handleClearAll} style={styles.clearAllButton}>
-            <Text style={styles.clearAllText}>Hapus Semua</Text>
+        <View style={{ flexDirection: 'row', gap: 10 }}>
+          <Pressable 
+            onPress={toggleBlocking} 
+            style={[styles.actionButton, isBlockingEnabled && styles.actionButtonActive]}
+          >
+            <MaterialIcons 
+              name={isBlockingEnabled ? "notifications-off" : "notifications-none"} 
+              size={20} 
+              color={isBlockingEnabled ? theme.colors.white : theme.colors.primary} 
+            />
           </Pressable>
-        )}
+          {notifications.length > 0 && (
+            <Pressable onPress={handleClearAll} style={styles.clearAllButton}>
+              <Text style={styles.clearAllText}>Hapus Semua</Text>
+            </Pressable>
+          )}
+        </View>
       </View>
       
       {/* Category Tabs */}
@@ -110,6 +135,17 @@ const styles = StyleSheet.create({
     fontSize: theme.fontSize.sm,
     fontWeight: theme.fontWeight.medium,
     color: theme.colors.danger,
+  },
+  actionButton: {
+    padding: theme.spacing.sm,
+    borderRadius: theme.borderRadius.md,
+    backgroundColor: theme.colors.surface,
+    borderWidth: 1,
+    borderColor: theme.colors.primary,
+  },
+  actionButtonActive: {
+    backgroundColor: theme.colors.danger,
+    borderColor: theme.colors.danger,
   },
   list: {
     padding: theme.spacing.lg,
