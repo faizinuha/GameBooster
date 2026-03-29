@@ -9,7 +9,8 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": false,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.gamebooster.app"
     },
     "android": {
       "package": "com.gamebooster.app",
@@ -26,6 +27,11 @@
       "bundler": "metro",
       "output": "static",
       "favicon": "./assets/images/logo.png"
+    },
+    "splash": {
+      "image": "./assets/images/logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
     },
     "plugins": [
       "expo-router",
