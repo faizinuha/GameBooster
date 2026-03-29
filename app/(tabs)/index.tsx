@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView, Pressable } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Pressable, Alert } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useState, useEffect } from 'react';
@@ -16,19 +16,47 @@ import { SystemStats } from '../../components/system/SystemStats';
 import { TutorialModal } from '../../components/system/TutorialModal';
 import { openDNDSettings } from '../../services/systemService';
 import { PingDisplay } from '../../components/network/PingDisplay';
+import { LaunchingAnimation } from '../../components/dashboard/LaunchingAnimation';
+import { appMonitor } from '../../services/appMonitorService';
+import type { AppItem } from '../../types';
 
 export default function DashboardScreen() {
   const insets = useSafeAreaInsets();
   const router = useRouter();
-  const { apps, selectedApps, toggleApp, removeApp, reloadApps } = useApps();
+  const { apps, selectedApps, toggleApp, removeApp, reloadApps, launchApp } = useApps();
   const { isBoosting, isLoading, stats, startBoost, stopBoost, loadStats, clearCache } = useBoostContext();
   const [showAddModal, setShowAddModal] = useState(false);
   const [isScanning, setIsScanning] = useState(false);
   const [tutorialType, setTutorialType] = useState<'cache' | 'notification' | 'overlay' | null>(null);
+  const [launchingApp, setLaunchingApp] = useState<AppItem | null>(null);
   
   useEffect(() => {
     loadStats();
-  }, [loadStats]);
+    
+    // Start monitoring for new apps
+    appMonitor.addListener({
+      onAppInstalled: (app) => {
+        Alert.alert(
+          '🎮 Aplikasi Baru Terdeteksi',
+          `${app.name} telah terinstall. Tambahkan ke Game Booster?`,
+          [
+            { text: 'Nanti', style: 'cancel' },
+            { text: 'Tambahkan', onPress: () => reloadApps() },
+          ]
+        );
+      },
+      onAppUninstalled: (packageName) => {
+        console.log('App removed:', packageName);
+        reloadApps();
+      },
+    });
+    
+    appMonitor.startMonitoring(10000); // Check every 10 seconds
+    
+    return () => {
+      appMonitor.stopMonitoring();
+    };
+  }, [loadStats, reloadApps]);
 
   const handleScan = async () => {
     setIsScanning(true);
@@ -44,6 +72,28 @@ export default function DashboardScreen() {
   
   const handleStopBoost = async () => {
     await stopBoost(selectedApps);
+  };
+  
+  const handleLaunchApp = async (app: AppItem) => {
+    // Show launching animation
+    setLaunchingApp(app);
+  };
+  
+  const handleLaunchComplete = async () => {
+    if (launchingApp) {
+      // Launch the actual app
+      const success = await launchApp(launchingApp);
+      
+      if (!success) {
+        Alert.alert(
+          'Gagal Meluncurkan',
+          `Tidak dapat membuka ${launchingApp.name}. Pastikan aplikasi terinstall.`,
+          [{ text: 'OK' }]
+        );
+      }
+      
+      setLaunchingApp(null);
+    }
   };
   
   return (
@@ -188,6 +238,7 @@ export default function DashboardScreen() {
                 isSelected={false}
                 onToggle={() => {}}
                 onRemove={() => removeApp(app.id)}
+                onLaunch={handleLaunchApp}
                 showRemove
               />
             ))
@@ -217,6 +268,13 @@ export default function DashboardScreen() {
         visible={tutorialType !== null}
         type={tutorialType}
         onClose={() => setTutorialType(null)}
+      />
+      
+      {/* Launching Animation */}
+      <LaunchingAnimation
+        visible={launchingApp !== null}
+        app={launchingApp}
+        onComplete={handleLaunchComplete}
       />
     </View>
   );

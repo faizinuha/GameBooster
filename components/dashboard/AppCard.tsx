@@ -9,12 +9,23 @@ interface AppCardProps {
   onToggle: () => void;
   onRemove?: () => void;
   showRemove?: boolean;
+  onLaunch?: (app: AppItem) => void;
 }
 
-export const AppCard = ({ app, isSelected, onToggle, onRemove, showRemove = false }: AppCardProps) => {
+export const AppCard = ({ app, isSelected, onToggle, onRemove, showRemove = false, onLaunch }: AppCardProps) => {
+  const handlePress = () => {
+    if (showRemove && onLaunch) {
+      // Jika di selected apps list, launch app
+      onLaunch(app);
+    } else {
+      // Jika di modal add apps, toggle selection
+      onToggle();
+    }
+  };
+  
   return (
     <Pressable
-      onPress={onToggle}
+      onPress={handlePress}
       style={({ pressed }) => [
         styles.container,
         isSelected && styles.selected,

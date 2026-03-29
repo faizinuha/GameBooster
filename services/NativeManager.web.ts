@@ -44,5 +44,10 @@ export const NativeManager = {
 
   async clearAppCache(packageName: string): Promise<void> {
     console.warn('clearAppCache is not supported on web');
+  },
+
+  async launchApp(packageName: string): Promise<boolean> {
+    console.warn('launchApp is not supported on web');
+    return false;
   }
 };

@@ -1,6 +1,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { AppItem } from '../types';
 import { getInstalledApps } from '../services/appService';
+import { NativeManager } from '../services/NativeManager';
 
 export const useApps = () => {
   const [apps, setApps] = useState<AppItem[]>([]);
@@ -37,6 +38,16 @@ export const useApps = () => {
     setSelectedApps([]);
   }, []);
   
+  const launchApp = useCallback(async (app: AppItem): Promise<boolean> => {
+    try {
+      const success = await NativeManager.launchApp(app.packageName);
+      return success;
+    } catch (error) {
+      console.error('Failed to launch app:', error);
+      return false;
+    }
+  }, []);
+  
   useEffect(() => {
     loadApps();
   }, [loadApps]);
@@ -49,5 +60,6 @@ export const useApps = () => {
     removeApp,
     clearSelection,
     reloadApps: loadApps,
+    launchApp,
   };
 };

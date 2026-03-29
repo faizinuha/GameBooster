@@ -149,5 +149,36 @@ export const NativeManager = {
       console.error('Failed to clear app cache:', e);
       this.openAppSettings(packageName);
     }
+  },
+
+  /**
+   * Launch aplikasi berdasarkan package name
+   */
+  async launchApp(packageName: string): Promise<boolean> {
+    if (Platform.OS !== 'android') {
+      console.warn('launchApp only works on Android');
+      return false;
+    }
+    
+    try {
+      // Try to open app using package name
+      const url = `intent://${packageName}#Intent;scheme=android-app;package=${packageName};end`;
+      const canOpen = await Linking.canOpenURL(url);
+      
+      if (canOpen) {
+        await Linking.openURL(url);
+        return true;
+      }
+      
+      // Fallback: try direct package launch
+      await IntentLauncher.startActivityAsync(
+        IntentLauncher.ActivityAction.MAIN,
+        { packageName }
+      );
+      return true;
+    } catch (error) {
+      console.error(`Failed to launch app ${packageName}:`, error);
+      return false;
+    }
   }
 };
