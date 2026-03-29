@@ -2,6 +2,7 @@
   "name": "onspace-app",
   "main": "expo-router/entry",
   "version": "1.0.0",
+  "packageManager": "pnpm@9.0.0",
   "scripts": {
     "start": "expo start --offline",
     "dev": "expo start --offline",
