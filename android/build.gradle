@@ -20,5 +20,14 @@ allprojects {
   }
 }
 
+subprojects { subproject ->
+  if ((subproject.plugins.hasPlugin('android') || subproject.plugins.hasPlugin('android-library'))) {
+    android {
+      compileSdkVersion 36
+      buildToolsVersion "36.0.0"
+    }
+  }
+}
+
 apply plugin: "expo-root-project"
 apply plugin: "com.facebook.react.rootproject"
