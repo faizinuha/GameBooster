@@ -7,7 +7,7 @@
     "icon": "./assets/images/logo.png",
     "scheme": "GameBooster",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": false,
+    "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.gamebooster.app"
@@ -15,6 +15,7 @@
     "android": {
       "package": "com.gamebooster.app",
       "permissions": [
+        "QUERY_ALL_PACKAGES",
         "QUERY_ALL_PACKAGES"
       ],
       "adaptiveIcon": {
@@ -43,8 +44,7 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ],
-      "expo-web-browser"
+      ]
     ],
     "experiments": {
       "typedRoutes": true
@@ -55,6 +55,10 @@
         "projectId": "be6e7ccf-c088-4a27-a548-89c29a1af211"
       }
     },
-    "owner": "gamebosster"
+    "owner": "gamebosster",
+    "runtimeVersion": "1.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/be6e7ccf-c088-4a27-a548-89c29a1af211"
+    }
   }
 }
