@@ -6,9 +6,9 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath('com.android.tools.build:gradle:8.2.0')
+    classpath('com.android.tools.build:gradle')
     classpath('com.facebook.react:react-native-gradle-plugin')
-    classpath('org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.10')
+    classpath('org.jetbrains.kotlin:kotlin-gradle-plugin')
   }
 }
 
@@ -17,17 +17,6 @@ allprojects {
     google()
     mavenCentral()
     maven { url 'https://www.jitpack.io' }
-  }
-}
-
-subprojects {
-  afterEvaluate {
-    if (plugins.hasPlugin('android') || plugins.hasPlugin('android-library')) {
-      android {
-        compileSdkVersion 36
-        buildToolsVersion "36.0.0"
-      }
-    }
   }
 }
 

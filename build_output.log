@@ -1,0 +1,516 @@
+Resolved "production" environment for the build. Learn more: https://docs.expo.dev/eas/environment-variables/#setting-the-environment-for-your-builds
+No environment variables with visibility "Plain text" and "Sensitive" found for the "production" environment on EAS.
+
+Specified value for "android.package" in app.json is ignored because an android directory was detected in the project.
+EAS Build will use the value found in the native code.
+✔ Using remote Android credentials (Expo server)
+✔ Using Keystore from configuration: Build Credentials YxF1rdq8GP (default)
+⠋ Computing project fingerprint⠙ Computing project fingerprint⠹ Computing project fingerprint⠸ Computing project fingerprint⠼ Computing project fingerprint⠴ Computing project fingerprint⠦ Computing project fingerprint⠧ Computing project fingerprint⠇ Computing project fingerprint⠏ Computing project fingerprint⠋ Computing project fingerprint⠙ Computing project fingerprint⠹ Computing project fingerprint⠸ Computing project fingerprint⠼ Computing project fingerprint⠴ Computing project fingerprint⠦ Computing project fingerprint⠧ Computing project fingerprint⠇ Computing project fingerprint⠏ Computing project fingerprint⠋ Computing project fingerprint⠙ Computing project fingerprint⠹ Computing project fingerprint⠸ Computing project fingerprint⠼ Computing project fingerprint⠴ Computing project fingerprint⠦ Computing project fingerprint⠧ Computing project fingerprint⠇ Computing project fingerprint⠏ Computing project fingerprint⠋ Computing project fingerprint⠙ Computing project fingerprint⠹ Computing project fingerprint⠸ Computing project fingerprint⠼ Computing project fingerprint⠴ Computing project fingerprint⠦ Computing project fingerprint⠧ Computing project fingerprint⠇ Computing project fingerprint⠏ Computing project fingerprint⠋ Computing project fingerprint⠙ Computing project fingerprint⠹ Computing project fingerprint⠸ Computing project fingerprint⠼ Computing project fingerprint⠴ Computing project fingerprint⠦ Computing project fingerprint⠧ Computing project fingerprint⠇ Computing project fingerprint✔ Computed project fingerprint
+ANDROID_NDK_HOME environment variable was not specified, continuing build without NDK
+[SETUP_WORKINGDIR] Preparing workingdir /tmp/codespace/eas-build-local-nodejs/ce407744-d771-4775-baac-5da3587a095d
+[START_BUILD] Starting build
+  "job": {
+    "type": "generic",
+    "platform": "android",
+    "projectRootDirectory": ".",
+    "projectArchive": {
+      "type": "PATH",
+      "path": "/tmp/codespace/eas-cli-nodejs/7e14feb8-205c-4293-a9e5-73bcce669273.tar.gz"
+    },
+    "builderEnvironment": {
+      "env": {}
+    },
+    "cache": {
+      "disabled": false,
+      "paths": [],
+      "clear": false
+    },
+    "updates": {
+      "channel": "production"
+    },
+    "buildType": "apk",
+    "username": "mahiro_ay",
+    "version": {
+      "versionCode": "11"
+    },
+    "experimental": {},
+    "mode": "build",
+    "triggeredBy": "EAS_CLI",
+    "appId": "be6e7ccf-c088-4a27-a548-89c29a1af211",
+    "initiatingUserId": "d11ddcb1-c0bf-49eb-93be-3248cc48d7cd"
+  }
+Local build, skipping project archive refresh
+[READ_EAS_JSON] Using eas.json:
+[READ_EAS_JSON] {
+  "cli": {
+    "version": ">= 14.5.0",
+    "appVersionSource": "remote",
+    "requireCommit": false
+  },
+  "build": {
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      },
+      "channel": "preview"
+    },
+    "production": {
+      "android": {
+        "buildType": "apk"
+      },
+      "channel": "production"
+    }
+  },
+  "submit": {
+    "production": {}
+  }
+}
+
+[READ_PACKAGE_JSON] Using package.json:
+[READ_PACKAGE_JSON] {
+  "name": "onspace-app",
+  "main": "expo-router/entry",
+  "version": "1.0.0",
+  "packageManager": "pnpm@9.0.0",
+  "scripts": {
+    "start": "expo start --offline",
+    "dev": "expo start --offline",
+    "reset-project": "node ./scripts/reset-project.js",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web",
+    "lint": "expo lint"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.4.10",
+    "@expo-google-fonts/inter": "^0.4.1",
+    "@expo/metro-runtime": "~6.1.2",
+    "@expo/styleguide-native": "^1.0.1",
+    "@expo/vector-icons": "^15.1.1",
+    "@gorhom/bottom-sheet": "4.4.6",
+    "@graphql-codegen/introspection": "^2.1.1",
+    "@lucide/lab": "^0.1.2",
+    "@privacyresearch/libsignal-protocol-typescript": "0.0.16",
+    "@react-native-async-storage/async-storage": "2.2.0",
+    "@react-native-clipboard/clipboard": "^1.16.3",
+    "@react-native-community/datetimepicker": "8.4.4",
+    "@react-native-community/netinfo": "11.4.1",
+    "@react-native-community/slider": "5.0.1",
+    "@react-native-masked-view/masked-view": "0.3.2",
+    "@react-native-picker/picker": "2.11.1",
+    "@react-native-segmented-control/segmented-control": "2.5.7",
+    "@react-navigation/bottom-tabs": "^7.3.10",
+    "@react-navigation/core": "7.8.5",
+    "@react-navigation/drawer": "^7.3.9",
+    "@react-navigation/elements": "2.3.8",
+    "@react-navigation/native": "^7.1.6",
+    "@react-navigation/native-stack": "^7.3.10",
+    "@react-navigation/routers": "7.3.5",
+    "@react-navigation/stack": "7.2.10",
+    "@shopify/flash-list": "2.0.2",
+    "@shopify/react-native-skia": "2.2.12",
+    "@stripe/stripe-react-native": "0.50.3",
+    "@supabase/supabase-js": "^2.50.0",
+    "ajv": "^8.18.0",
+    "ajv-keywords": "^5.1.0",
+    "date-fns": "^2.28.0",
+    "dedent": "^0.7.0",
+    "es6-error": "^4.1.1",
+    "expo": "^54.0.33",
+    "expo-application": "~7.0.8",
+    "expo-asset": "~12.0.12",
+    "expo-audio": "~1.1.1",
+    "expo-auth-session": "~7.0.10",
+    "expo-av": "~16.0.8",
+    "expo-blur": "~15.0.8",
+    "expo-calendar": "~15.0.8",
+    "expo-camera": "~17.0.10",
+    "expo-clipboard": "~8.0.8",
+    "expo-constants": "~18.0.13",
+    "expo-contacts": "~15.0.11",
+    "expo-crypto": "~15.0.8",
+    "expo-dev-client": "~6.0.20",
+    "expo-device": "~8.0.10",
+    "expo-document-picker": "~14.0.8",
+    "expo-file-system": "~19.0.21",
+    "expo-font": "~14.0.11",
+    "expo-gl": "~16.0.10",
+    "expo-haptics": "~15.0.8",
+    "expo-image": "~3.0.11",
+    "expo-image-manipulator": "~14.0.8",
+    "expo-image-picker": "~17.0.10",
+    "expo-intent-launcher": "~13.0.8",
+    "expo-linear-gradient": "~15.0.8",
+    "expo-linking": "~8.0.11",
+    "expo-local-authentication": "~17.0.8",
+    "expo-localization": "~17.0.8",
+    "expo-location": "~19.0.8",
+    "expo-mail-composer": "~15.0.8",
+    "expo-manifests": "~1.0.10",
+    "expo-media-library": "~18.2.1",
+    "expo-modules-autolinking": "~3.0.24",
+    "expo-navigation-bar": "~5.0.10",
+    "expo-network": "~8.0.8",
+    "expo-notifications": "~0.32.16",
+    "expo-print": "~15.0.8",
+    "expo-router": "~6.0.23",
+    "expo-screen-capture": "~8.0.9",
+    "expo-screen-orientation": "~9.0.8",
+    "expo-secure-store": "~15.0.8",
+    "expo-sensors": "~15.0.8",
+    "expo-sharing": "~14.0.8",
+    "expo-speech": "~14.0.8",
+    "expo-splash-screen": "~31.0.13",
+    "expo-sqlite": "~16.0.10",
+    "expo-status-bar": "~3.0.9",
+    "expo-store-review": "~9.0.9",
+    "expo-symbols": "~1.0.8",
+    "expo-system-ui": "~6.0.9",
+    "expo-task-manager": "~14.0.9",
+    "expo-updates": "~29.0.16",
+    "expo-video": "~3.0.15",
+    "expo-web-browser": "~15.0.10",
+    "graphql": "^15.3.0",
+    "immutable": "^4.0.0",
+    "lottie-react-native": "~7.3.1",
+    "lucide-react-native": "^1.7.0",
+    "nativewind": "^4.1.23",
+    "path-to-regexp": "^1.9.0",
+    "prop-types": "^15.7.2",
+    "querystring": "^0.2.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0",
+    "react-native": "0.81.5",
+    "react-native-calendars": "^1.1312.1",
+    "react-native-chart-kit": "6.12.0",
+    "react-native-crypto-js": "^1.0.0",
+    "react-native-dynamic": "^1.0.0",
+    "react-native-edge-to-edge": "1.6.0",
+    "react-native-elements": "^3.4.3",
+    "react-native-fade-in-image": "^1.6.1",
+    "react-native-gesture-handler": "~2.28.0",
+    "react-native-infinite-scroll-view": "^0.4.5",
+    "react-native-installed-application": "^1.0.6",
+    "react-native-keyboard-aware-scroll-view": "^0.9.5",
+    "react-native-keyboard-controller": "1.18.5",
+    "react-native-maps": "1.20.1",
+    "react-native-markdown-display": "^7.0.2",
+    "react-native-pager-view": "6.9.1",
+    "react-native-paper": "^5.12.5",
+    "react-native-qrcode-svg": "^6.3.15",
+    "react-native-reanimated": "~4.1.1",
+    "react-native-safe-area-context": "~5.6.0",
+    "react-native-screens": "~4.16.0",
+    "react-native-super-grid": "^6.0.1",
+    "react-native-svg": "15.12.1",
+    "react-native-url-polyfill": "^2.0.0",
+    "react-native-vector-icons": "^10.2.0",
+    "react-native-view-shot": "4.0.3",
+    "react-native-web": "~0.21.0",
+    "react-native-webrtc": "^124.0.6",
+    "react-native-webview": "13.15.0",
+    "react-native-worklets": "^0.5.1",
+    "react-redux": "^7.2.0",
+    "react-refresh": "^0.17.0",
+    "react-string-replace": "^0.4.4",
+    "redux": "^4.0.5",
+    "redux-thunk": "^2.3.0",
+    "semver": "^7.6.0",
+    "snack-content": "^3.2.0",
+    "tslib": "2.6.2",
+    "url": "^0.11.0",
+    "zustand": "^5.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@types/react": "~19.1.10",
+    "eslint": "^9.25.0",
+    "eslint-config-expo": "~10.0.0",
+    "react-dev-inspector": "^2.0.1",
+    "typescript": "~5.9.3"
+  }
+}
+[INSTALL_DEPENDENCIES] Running "pnpm install --frozen-lockfile" in /tmp/codespace/eas-build-local-nodejs/ce407744-d771-4775-baac-5da3587a095d/build directory
+[INSTALL_DEPENDENCIES] Lockfile is up to date, resolution step is skipped
+[INSTALL_DEPENDENCIES] Progress: resolved 1, reused 0, downloaded 0, added 0
+[INSTALL_DEPENDENCIES] Packages: +1308
+[INSTALL_DEPENDENCIES] ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+[INSTALL_DEPENDENCIES] Progress: resolved 1308, reused 308, downloaded 0, added 0
+[INSTALL_DEPENDENCIES] Progress: resolved 1308, reused 924, downloaded 0, added 0
+[INSTALL_DEPENDENCIES] Progress: resolved 1308, reused 1308, downloaded 0, added 217
+[INSTALL_DEPENDENCIES] Progress: resolved 1308, reused 1308, downloaded 0, added 701
+[INSTALL_DEPENDENCIES] Progress: resolved 1308, reused 1308, downloaded 0, added 924
+[INSTALL_DEPENDENCIES] Progress: resolved 1308, reused 1308, downloaded 0, added 1308, done
+[INSTALL_DEPENDENCIES] dependencies:
+[INSTALL_DEPENDENCIES] + @apollo/client 3.14.1
+[INSTALL_DEPENDENCIES] + @expo-google-fonts/inter 0.4.2
+[INSTALL_DEPENDENCIES] + @expo/metro-runtime 6.1.2
+[INSTALL_DEPENDENCIES] + @expo/styleguide-native 1.1.0
+[INSTALL_DEPENDENCIES] + @expo/vector-icons 15.1.1
+[INSTALL_DEPENDENCIES] + @gorhom/bottom-sheet 4.4.6
+[INSTALL_DEPENDENCIES] + @graphql-codegen/introspection 2.2.3
+[INSTALL_DEPENDENCIES] + @lucide/lab 0.1.2
+[INSTALL_DEPENDENCIES] + @privacyresearch/libsignal-protocol-typescript 0.0.16
+[INSTALL_DEPENDENCIES] + @react-native-async-storage/async-storage 2.2.0
+[INSTALL_DEPENDENCIES] + @react-native-clipboard/clipboard 1.16.3
+[INSTALL_DEPENDENCIES] + @react-native-community/datetimepicker 8.4.4
+[INSTALL_DEPENDENCIES] + @react-native-community/netinfo 11.4.1
+[INSTALL_DEPENDENCIES] + @react-native-community/slider 5.0.1
+[INSTALL_DEPENDENCIES] + @react-native-masked-view/masked-view 0.3.2
+[INSTALL_DEPENDENCIES] + @react-native-picker/picker 2.11.1
+[INSTALL_DEPENDENCIES] + @react-native-segmented-control/segmented-control 2.5.7
+[INSTALL_DEPENDENCIES] + @react-navigation/bottom-tabs 7.15.9
+[INSTALL_DEPENDENCIES] + @react-navigation/core 7.8.5
+[INSTALL_DEPENDENCIES] + @react-navigation/drawer 7.9.8
+[INSTALL_DEPENDENCIES] + @react-navigation/elements 2.3.8
+[INSTALL_DEPENDENCIES] + @react-navigation/native 7.2.2
+[INSTALL_DEPENDENCIES] + @react-navigation/native-stack 7.14.10
+[INSTALL_DEPENDENCIES] + @react-navigation/routers 7.3.5
+[INSTALL_DEPENDENCIES] + @react-navigation/stack 7.2.10
+[INSTALL_DEPENDENCIES] + @shopify/flash-list 2.0.2
+[INSTALL_DEPENDENCIES] + @shopify/react-native-skia 2.2.12
+[INSTALL_DEPENDENCIES] + @stripe/stripe-react-native 0.50.3
+[INSTALL_DEPENDENCIES] + @supabase/supabase-js 2.100.1
+[INSTALL_DEPENDENCIES] + ajv 8.18.0
+[INSTALL_DEPENDENCIES] + ajv-keywords 5.1.0
+[INSTALL_DEPENDENCIES] + date-fns 2.30.0
+[INSTALL_DEPENDENCIES] + dedent 0.7.0
+[INSTALL_DEPENDENCIES] + es6-error 4.1.1
+[INSTALL_DEPENDENCIES] + expo 54.0.33
+[INSTALL_DEPENDENCIES] + expo-application 7.0.8
+[INSTALL_DEPENDENCIES] + expo-asset 12.0.12
+[INSTALL_DEPENDENCIES] + expo-audio 1.1.1
+[INSTALL_DEPENDENCIES] + expo-auth-session 7.0.10
+[INSTALL_DEPENDENCIES] + expo-av 16.0.8
+[INSTALL_DEPENDENCIES] + expo-blur 15.0.8
+[INSTALL_DEPENDENCIES] + expo-calendar 15.0.8
+[INSTALL_DEPENDENCIES] + expo-camera 17.0.10
+[INSTALL_DEPENDENCIES] + expo-clipboard 8.0.8
+[INSTALL_DEPENDENCIES] + expo-constants 18.0.13
+[INSTALL_DEPENDENCIES] + expo-contacts 15.0.11
+[INSTALL_DEPENDENCIES] + expo-crypto 15.0.8
+[INSTALL_DEPENDENCIES] + expo-dev-client 6.0.20
+[INSTALL_DEPENDENCIES] + expo-device 8.0.10
+[INSTALL_DEPENDENCIES] + expo-document-picker 14.0.8
+[INSTALL_DEPENDENCIES] + expo-file-system 19.0.21
+[INSTALL_DEPENDENCIES] + expo-font 14.0.11
+[INSTALL_DEPENDENCIES] + expo-gl 16.0.10
+[INSTALL_DEPENDENCIES] + expo-haptics 15.0.8
+[INSTALL_DEPENDENCIES] + expo-image 3.0.11
+[INSTALL_DEPENDENCIES] + expo-image-manipulator 14.0.8
+[INSTALL_DEPENDENCIES] + expo-image-picker 17.0.10
+[INSTALL_DEPENDENCIES] + expo-intent-launcher 13.0.8
+[INSTALL_DEPENDENCIES] + expo-linear-gradient 15.0.8
+[INSTALL_DEPENDENCIES] + expo-linking 8.0.11
+[INSTALL_DEPENDENCIES] + expo-local-authentication 17.0.8
+[INSTALL_DEPENDENCIES] + expo-localization 17.0.8
+[INSTALL_DEPENDENCIES] + expo-location 19.0.8
+[INSTALL_DEPENDENCIES] + expo-mail-composer 15.0.8
+[INSTALL_DEPENDENCIES] + expo-manifests 1.0.10
+[INSTALL_DEPENDENCIES] + expo-media-library 18.2.1
+[INSTALL_DEPENDENCIES] + expo-modules-autolinking 3.0.24
+[INSTALL_DEPENDENCIES] + expo-navigation-bar 5.0.10
+[INSTALL_DEPENDENCIES] + expo-network 8.0.8
+[INSTALL_DEPENDENCIES] + expo-notifications 0.32.16
+[INSTALL_DEPENDENCIES] + expo-print 15.0.8
+[INSTALL_DEPENDENCIES] + expo-router 6.0.23
+[INSTALL_DEPENDENCIES] + expo-screen-capture 8.0.9
+[INSTALL_DEPENDENCIES] + expo-screen-orientation 9.0.8
+[INSTALL_DEPENDENCIES] + expo-secure-store 15.0.8
+[INSTALL_DEPENDENCIES] + expo-sensors 15.0.8
+[INSTALL_DEPENDENCIES] + expo-sharing 14.0.8
+[INSTALL_DEPENDENCIES] + expo-speech 14.0.8
+[INSTALL_DEPENDENCIES] + expo-splash-screen 31.0.13
+[INSTALL_DEPENDENCIES] + expo-sqlite 16.0.10
+[INSTALL_DEPENDENCIES] + expo-status-bar 3.0.9
+[INSTALL_DEPENDENCIES] + expo-store-review 9.0.9
+[INSTALL_DEPENDENCIES] + expo-symbols 1.0.8
+[INSTALL_DEPENDENCIES] + expo-system-ui 6.0.9
+[INSTALL_DEPENDENCIES] + expo-task-manager 14.0.9
+[INSTALL_DEPENDENCIES] + expo-updates 29.0.16
+[INSTALL_DEPENDENCIES] + expo-video 3.0.16
+[INSTALL_DEPENDENCIES] + expo-web-browser 15.0.10
+[INSTALL_DEPENDENCIES] + graphql 15.10.2
+[INSTALL_DEPENDENCIES] + immutable 4.3.8
+[INSTALL_DEPENDENCIES] + lottie-react-native 7.3.6
+[INSTALL_DEPENDENCIES] + lucide-react-native 1.7.0
+[INSTALL_DEPENDENCIES] + nativewind 4.2.3
+[INSTALL_DEPENDENCIES] + path-to-regexp 1.9.0
+[INSTALL_DEPENDENCIES] + prop-types 15.8.1
+[INSTALL_DEPENDENCIES] + querystring 0.2.1
+[INSTALL_DEPENDENCIES] + react 19.1.0
+[INSTALL_DEPENDENCIES] + react-dom 19.1.0
+[INSTALL_DEPENDENCIES] + react-native 0.81.5
+[INSTALL_DEPENDENCIES] + react-native-calendars 1.1314.0
+[INSTALL_DEPENDENCIES] + react-native-chart-kit 6.12.0
+[INSTALL_DEPENDENCIES] + react-native-crypto-js 1.0.0
+[INSTALL_DEPENDENCIES] + react-native-dynamic 1.0.0
+[INSTALL_DEPENDENCIES] + react-native-edge-to-edge 1.6.0
+[INSTALL_DEPENDENCIES] + react-native-elements 3.4.3
+[INSTALL_DEPENDENCIES] + react-native-fade-in-image 1.6.1
+[INSTALL_DEPENDENCIES] + react-native-gesture-handler 2.28.0
+[INSTALL_DEPENDENCIES] + react-native-infinite-scroll-view 0.4.5
+[INSTALL_DEPENDENCIES] + react-native-installed-application 1.0.6
+[INSTALL_DEPENDENCIES] + react-native-keyboard-aware-scroll-view 0.9.5
+[INSTALL_DEPENDENCIES] + react-native-keyboard-controller 1.18.5
+[INSTALL_DEPENDENCIES] + react-native-maps 1.20.1
+[INSTALL_DEPENDENCIES] + react-native-markdown-display 7.0.2
+[INSTALL_DEPENDENCIES] + react-native-pager-view 6.9.1
+[INSTALL_DEPENDENCIES] + react-native-paper 5.15.0
+[INSTALL_DEPENDENCIES] + react-native-qrcode-svg 6.3.21
+[INSTALL_DEPENDENCIES] + react-native-reanimated 4.1.7
+[INSTALL_DEPENDENCIES] + react-native-safe-area-context 5.6.2
+[INSTALL_DEPENDENCIES] + react-native-screens 4.16.0
+[INSTALL_DEPENDENCIES] + react-native-super-grid 6.0.2
+[INSTALL_DEPENDENCIES] + react-native-svg 15.12.1
+[INSTALL_DEPENDENCIES] + react-native-url-polyfill 2.0.0
+[INSTALL_DEPENDENCIES] + react-native-vector-icons 10.3.0
+[INSTALL_DEPENDENCIES] + react-native-view-shot 4.0.3
+[INSTALL_DEPENDENCIES] + react-native-web 0.21.2
+[INSTALL_DEPENDENCIES] + react-native-webrtc 124.0.7
+[INSTALL_DEPENDENCIES] + react-native-webview 13.15.0
+[INSTALL_DEPENDENCIES] + react-native-worklets 0.5.1
+[INSTALL_DEPENDENCIES] + react-redux 7.2.9
+[INSTALL_DEPENDENCIES] + react-refresh 0.17.0
+[INSTALL_DEPENDENCIES] + react-string-replace 0.4.4
+[INSTALL_DEPENDENCIES] + redux 4.2.1
+[INSTALL_DEPENDENCIES] + redux-thunk 2.4.2
+[INSTALL_DEPENDENCIES] + semver 7.7.4
+[INSTALL_DEPENDENCIES] + snack-content 3.6.1
+[INSTALL_DEPENDENCIES] + tslib 2.6.2
+[INSTALL_DEPENDENCIES] + url 0.11.4
+[INSTALL_DEPENDENCIES] + zustand 5.0.12
+[INSTALL_DEPENDENCIES] 
+[INSTALL_DEPENDENCIES] devDependencies:
+[INSTALL_DEPENDENCIES] + @babel/core 7.29.0
+[INSTALL_DEPENDENCIES] + @types/react 19.1.17
+[INSTALL_DEPENDENCIES] + eslint 9.39.4
+[INSTALL_DEPENDENCIES] + eslint-config-expo 10.0.0
+[INSTALL_DEPENDENCIES] + react-dev-inspector 2.0.1
+[INSTALL_DEPENDENCIES] + typescript 5.9.3
+[INSTALL_DEPENDENCIES] Done in 7.4s
+The NODE_ENV environment variable is required but was not specified. Ensure the project is bundled with Expo CLI or NODE_ENV is set.
+Proceeding without mode-specific .env
+[READ_APP_CONFIG] Using app configuration:
+[READ_APP_CONFIG] {
+  "name": "GameBooster",
+  "slug": "gamebooster-pro",
+  "version": "1.0.0",
+  "orientation": "portrait",
+  "icon": "./assets/images/logo.png",
+  "scheme": "GameBooster",
+  "userInterfaceStyle": "automatic",
+  "newArchEnabled": true,
+  "ios": {
+    "supportsTablet": true,
+    "bundleIdentifier": "com.gamebooster.app"
+  },
+  "android": {
+    "package": "com.gamebooster.app",
+    "permissions": [
+      "QUERY_ALL_PACKAGES",
+      "QUERY_ALL_PACKAGES"
+    ],
+    "adaptiveIcon": {
+      "foregroundImage": "./assets/images/logo.png",
+      "backgroundColor": "#ffffff"
+    },
+    "edgeToEdgeEnabled": true
+  },
+  "web": {
+    "bundler": "metro",
+    "output": "static",
+    "favicon": "./assets/images/logo.png"
+  },
+  "splash": {
+    "image": "./assets/images/logo.png",
+    "resizeMode": "contain",
+    "backgroundColor": "#ffffff"
+  },
+  "plugins": [
+    "expo-router",
+    [
+      "expo-splash-screen",
+      {
+        "image": "./assets/images/logo.png",
+        "imageWidth": 200,
+        "resizeMode": "contain",
+        "backgroundColor": "#ffffff"
+      }
+    ]
+  ],
+  "experiments": {
+    "typedRoutes": true
+  },
+  "extra": {
+    "router": {},
+    "eas": {
+      "projectId": "be6e7ccf-c088-4a27-a548-89c29a1af211"
+    }
+  },
+  "owner": "gamebosster",
+  "runtimeVersion": "1.0.0",
+  "updates": {
+    "url": "https://u.expo.dev/be6e7ccf-c088-4a27-a548-89c29a1af211"
+  },
+  "sdkVersion": "54.0.0",
+  "platforms": [
+    "ios",
+    "android",
+    "web"
+  ],
+  "androidStatusBar": {
+    "backgroundColor": "#ffffff"
+  }
+}
+[RUN_EXPO_DOCTOR] Running "expo doctor"
+[RUN_EXPO_DOCTOR] Running 17 checks on your project...
+[RUN_EXPO_DOCTOR] "expo doctor" timed out, skipping...
+[PREBUILD] Skipped running "expo prebuild" because the "android" directory already exists. Learn more about the build process: https://docs.expo.dev/build-reference/android-builds/
+[RESTORE_CACHE] Local builds do not support restoring cache
+[CALCULATE_EXPO_UPDATES_RUNTIME_VERSION] Resolved runtime version: 1.0.0
+[PREPARE_CREDENTIALS] Writing secrets to the project's directory
+[PREPARE_CREDENTIALS] Injecting signing config into build.gradle
+[PREPARE_CREDENTIALS] Signing config injected
+[CONFIGURE_ANDROID_VERSION] Injecting version config into build.gradle
+[CONFIGURE_ANDROID_VERSION] Version code: 11
+[CONFIGURE_ANDROID_VERSION] Version config injected
+[CONFIGURE_EXPO_UPDATES] Setting the update request headers in 'AndroidManifest.xml' to '{"expo-channel-name":"production"}'
+[EAGER_BUNDLE] Starting Metro Bundler
+[EAGER_BUNDLE] Android node_modules/.pnpm/expo-router@6.0.23_@expo+metro-runtime@6.1.2_@react-native-masked-view+masked-view@0.3.2_reac_3yfm7hc3e6mtgghjfar5fopaku/node_modules/expo-router/entry.js ░░░░░░░░░░░░░░░░  0.0% (0/1)
+[EAGER_BUNDLE] Android Bundled 2327ms node_modules/.pnpm/expo-router@6.0.23_@expo+metro-runtime@6.1.2_@react-native-masked-view+masked-view@0.3.2_reac_3yfm7hc3e6mtgghjfar5fopaku/node_modules/expo-router/entry.js (1493 modules)
+[EAGER_BUNDLE] Writing bundle output to: /tmp/plr9jzxvuug/index.js
+[EAGER_BUNDLE] Copying 45 asset files
+[EAGER_BUNDLE] Done writing bundle output
+[RUN_GRADLEW] Running 'gradlew :app:assembleRelease' in /tmp/codespace/eas-build-local-nodejs/ce407744-d771-4775-baac-5da3587a095d/build/android
+[RUN_GRADLEW] FAILURE: Build failed with an exception.
+[RUN_GRADLEW] * Where:
+[RUN_GRADLEW] Settings file '/tmp/codespace/eas-build-local-nodejs/ce407744-d771-4775-baac-5da3587a095d/build/android/settings.gradle' line: 21
+[RUN_GRADLEW] * What went wrong:
+[RUN_GRADLEW] Error resolving plugin [id: 'com.facebook.react.settings']
+[RUN_GRADLEW] > 25.0.1
+[RUN_GRADLEW] * Try:
+[RUN_GRADLEW] > Run with --stacktrace option to get the stack trace.
+[RUN_GRADLEW] > Run with --info or --debug option to get more log output.
+[RUN_GRADLEW] > Run with --scan to get full insights.
+[RUN_GRADLEW] > Get more help at
+[RUN_GRADLEW] https://help.gradle.org.
+[RUN_GRADLEW] BUILD FAILED in 2s
+[RUN_GRADLEW] Error: Gradle build failed with unknown error. See logs for the "Run gradlew" phase for more information.
+
+Build failed
+Gradle build failed with unknown error. See logs for the "Run gradlew" phase for more information.
+Error: Gradle build failed with unknown error. See logs for the "Run gradlew" phase for more information.
+    at resolveBuildPhaseErrorAsync (/home/codespace/.npm/_npx/7c5cb04dd06e9766/node_modules/@expo/build-tools/dist/buildErrors/detectError.js:61:12)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async BuildContext.handleBuildPhaseErrorAsync (/home/codespace/.npm/_npx/7c5cb04dd06e9766/node_modules/@expo/build-tools/dist/context.js:192:28)
+    at async BuildContext.runBuildPhase (/home/codespace/.npm/_npx/7c5cb04dd06e9766/node_modules/@expo/build-tools/dist/context.js:137:35)
+    at async buildAsync (/home/codespace/.npm/_npx/7c5cb04dd06e9766/node_modules/@expo/build-tools/dist/builders/android.js:132:5)
+    at async runBuilderWithHooksAsync (/home/codespace/.npm/_npx/7c5cb04dd06e9766/node_modules/@expo/build-tools/dist/builders/common.js:12:13)
+    at async Object.androidBuilder (/home/codespace/.npm/_npx/7c5cb04dd06e9766/node_modules/@expo/build-tools/dist/builders/android.js:28:16)
+    at async buildAndroidAsync (/home/codespace/.npm/_npx/7c5cb04dd06e9766/node_modules/eas-cli-local-build-plugin/dist/android.js:43:12)
+    at async buildAsync (/home/codespace/.npm/_npx/7c5cb04dd06e9766/node_modules/eas-cli-local-build-plugin/dist/build.js:54:29)
+    at async main (/home/codespace/.npm/_npx/7c5cb04dd06e9766/node_modules/eas-cli-local-build-plugin/dist/main.js:16:9)
+npx -y eas-cli-local-build-plugin@18.4.0 eyJqb2IiOnsidHlwZSI6ImdlbmVyaWMiLCJwbGF0Zm9ybSI6ImFuZHJvaWQiLCJwcm9qZWN0Um9vdERpcmVjdG9yeSI6Ii4iLCJwcm9qZWN0QXJjaGl2ZSI6eyJ0eXBlIjoiUEFUSCIsInBhdGgiOiIvdG1wL2NvZGVzcGFjZS9lYXMtY2xpLW5vZGVqcy83ZTE0ZmViOC0yMDVjLTQyOTMtYTllNS03M2JjY2U2NjkyNzMudGFyLmd6In0sImJ1aWxkZXJFbnZpcm9ubWVudCI6eyJlbnYiOnt9fSwiY2FjaGUiOnsiZGlzYWJsZWQiOmZhbHNlLCJwYXRocyI6W10sImNsZWFyIjpmYWxzZX0sInNlY3JldHMiOnsiYnVpbGRDcmVkZW50aWFscyI6eyJrZXlzdG9yZSI6eyJkYXRhQmFzZTY0IjoiL3UzKzdRQUFBQUlBQUFBQkFBQUFBUUFnTWpjeFpURTFZelkzTTJVeE5qVTJOams0WXpNeFpqUXpNekExTjJZM04yUUFBQUdkTjczNTV3QUFCUDh3Z2dUN01Bd0dDaXNHQVFRQktnSVJBUUVFZ2dUcGMwWGpXRlpMVGs4VlBCN2Jsa3E2K2p5S2NSOG9zRStkNGplaUtobUtneUxpRjB6QkR6djNQc3cyUEdUc09HQ2U4QmwrV1YzOWpRWFNrSk5hck1MWXZvOHozOGc0ZWxlbzJwZXdvanYvTUtTR0UvazJUZzVFZmtScThuWWQrRFoxcno0Q2VpWjhRZEIvcFFFeUhVWXlkWHYzSEZ2RGZTN1V6cS9Pa0czcVJsM1VacWdFOEdYWndLZ21SY0Yxc0h6QUJqWVRYZlZPem0vanlycEhyckZEVUk5NnptZnpCOVcwd1FnRzl1cUl5OExQTnczVlU1aUw4YVlNbDJFRmhrV09ERVo1T2hpOWFNQllHWWdSQjU1VDdGWWk4SHlhN0hveFN1Y1B1elhrckFNVHYxaGpqamJnTW93L3RsaWw5MFE4V1Vqanp3Und0T3FEaWc2ZDhrMlFnZDhUWDB2elJ6VlI2MEd4ZkFhenFwajgvVmNwMW5GazMwSUQ4bDNNV0J1NEdMeWswU2tCWnN6cDhhQWFWRnQyaldqYnZObjhkS25GNXF3WVZXR2JtRUlMSzBVTGdvMXhkSTh1UTBIazV2elZkYjZsdGRwbHhBT1pHU0ptNjM5MXByS3B1TVI2bUJvTXF3RXc2emQ1QTFmUzZVcjNZeEx2bC9PbGc2azV4aHJiWi9nU2tLdExxYzAxNDB4U0tYaTAvL3ZkT1c0Wmd6TkgvU090RnhSOG9TUkdkcWE0VVBOMjRtMlBzNGo3Y2doNXdVdE54ZHlhSDZTbHJGUnBXd252SnJoa3JmaHFsNHcrZVYyajhnWkxDSEJ2dXNJRTBmdlpoWndXMzNlTGZ2bEcwamVRUFRJdEZwM2hkYU9PTjlRdkZWbUJ1N1ZTcVU1dVNyOHVCOEdZa0hjRmtkUTFoYXdXZ3YwTmRaQUltSkhDNUFBNEJtVEFyYTlxWWczUC9kRUdEeDNlbzZOSTl1QVBBYWQ3NGRUL3Axc0tpb3RKLzkvcmJ2R3ZtTTY2anhvQTZHU0V2R0lGSEJ5dEpHSjBaOFpTZjQwaEJMMWZ5S2hPTHpveFM3UFlCOFdXNzZxQWxENm9ha2J1ZTVJZ2w3Q2NNSGZpM0krTUFPcDRUblBXSWdSRERrZHNsenU0S1hDekhpRUdEdTVYZERIeDJyNTEyUUYrU3J1NUpISkF1Q3JiR2FIaU16WmtPdTArL05PV2lXeTlYb3BxZFZiaXpoU3d4VlF2dVZuUkRLekhOa09wdXZsMlZaVnBld1huNE40RFNIcmRmSnBxS0VRY2x4bFNDQ3BtZytsT3ZWYUgwcFZnY0l1K01uZUY5a1dBcVVlVENWOGN6Z2xqeWwxdDhWK2VUM3h1Z3F4ZWVIU2JmWkdKMkVwcS9VaTZ5eGNueURoQmlpOThaVzJCeVEwZHowTWF5MlZLSy9KOURldHdyeG5ZMU5USzRHOEdCZ2ExamJYVk5PbTZHaExvRE05b2UxUFFNK0gwNDNrL0NHdEY2dStmd2FHY0Z6TFZaNjZmWFQ3bTN4R1U5TzNlZjVSV1lBU0QydEtpWjY5TndNMmcxVk1UZUs1UWRtdG9FQ1pWL3Q2emw2MU9DNFc3U1hwQVVxbURTbndjV3pOdGhaQVE0TGhiM1JhckVMaUNQN2IraFd5K2xkcFhwMjByZzRJYTFjTEt0em5MZ0VlY2FGSTl3VUdyVUdHZTFtbTgwSUt3L3gyZVNPWitZZ2YzZFNYZThiK1hURGNBSHFudE9XdDlucmpmWUpjN2xlWThZWllRZDhRMnRwam9DYW5rUkljSS9HVTVKUXhXMGpEZTZ1K21NSFA1bURSN0srei9sS2RsUEU3MHBWMkxvQ2NRa1M0NmFML3R5SW9pVloxRG5OUmhXOFVkNHhKSkhxNFVaSWt6Y1h3MkFodmxkaWlIVjArdG5yUlNKZm9mOUJEcEZwblJaUjRpU3NLSklLRVhuaTRyRGJnK3ZvVWN5K3JQYkhXTEsxSnZkZGlkT1RwWHJLVEFMZDRRcHJrUG1SOVZVTTFRKzlnMWIyODFKblNiTzlqQ1RSZ0VQTnVJZmcxY1NwVUxrSWlxdis2QXhRRW9lUWtJbzFYV0VuOHJKTy82dkFUM3VhNGFkRUV1bGg3ZjI5V2dkM1A1dWV5ZHRmbFFUNzhSazJwSHNTRDMxNGNEY3dxem13d3dsbWxUS0piem9lVVVQVEpEaGVWdjAyVllFYzhkQUFBQUFRQUZXQzQxTURrQUFBTXlNSUlETGpDQ0FoYWdBd0lCQWdJSkFNSHR0bTU2NFJVN01BMEdDU3FHU0liM0RRRUJEQVVBTUVReEN6QUpCZ05WQkFZVEFsVlRNUWt3QndZRFZRUUlFd0F4Q1RBSEJnTlZCQWNUQURFSk1BY0dBMVVFQ2hNQU1Ra3dCd1lEVlFRTEV3QXhDVEFIQmdOVkJBTVRBREFnRncweU5qQXpNamt3TXpVNE1UQmFHQTh5TURVek1EZ3hOREF6TlRneE1Gb3dSREVMTUFrR0ExVUVCaE1DVlZNeENUQUhCZ05WQkFnVEFERUpNQWNHQTFVRUJ4TUFNUWt3QndZRFZRUUtFd0F4Q1RBSEJnTlZCQXNUQURFSk1BY0dBMVVFQXhNQU1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBblY5dkp6Q2lkT3dKdXBjTDRkTXNsb0k0TjBxcHVvaWhqajdjKzVEbXc0U2dvWTlMWmF0NDhTbUZFRzlFOWs5VGlXRmV1a2lUUm5NVjF2bHFIRVpvVkpKNm5ieGtFL0xHUzM2c0hSaEZQWEo4UVM0M3V2VUtkb3VRWlhiTnBhd3FZT2Z6aWVrVVpDb1Y5M05FSXpYUWNGd242UnR1ZmlUa0N2SzdLNXdpOHIwdGxWQ0FubEJNTTlHWW1zQytuamJ5NDVidXVCemkzeGdnSFE5ejRONTlUeEhNSjJ2TzFydFBuRWR0dm5MWTA1cjA5TjV3Q2ZHdlluVmNpUTl3QTlWd1JRZXhtdjFDeVNmZU05US8xMXZtQlhEei9XYVc4SFcwZmZudXhLYUlRZUJUN203RXBxSUovUmo3RXFGQWd2K0toZllCZWR2R2NkTTM3TmZDR1NFT0R3SURBUUFCb3lFd0h6QWRCZ05WSFE0RUZnUVU1VGcwK1hqdzNrNDkzVDRXeWE2eWJQTVFHSWN3RFFZSktvWklodmNOQVFFTUJRQURnZ0VCQUl3Z212MFR1dW56NXJob0k1U250UjZod01OZjV5M09RMmg0dHZEbDFpMGNuOEZGT0hXTjJZWTVITnhxeW5mcHZKYzZERUN5clNGOW11RmdIMWZQbFJEZEVjcUxFT3VEUElsOWVCSEhDOHNIR0NlTGxzaEwybUszY3Mwdm1nWlVLbzV1OTRCQjV6S04zd3ZURHVMNk91emFUenYxeVdCVkFkR1VZc2MzQndWY1lBVktmN2ZSUDY3NWFzeVpQNkNQcWhvd0NCbkt1ZXNWdUdpQVVzbGp3empjcHlXSVIxYUhNM3RTNkJYQnpVQmxTV1FGbDlCREJici9MeFVBa1dNalRkRGc5MW8yNU02ZU5nbk9JT0tKOFhCR3FPdzJlUXB0SzZsUWpxRjBTelkwaGs5ejJaZCsybkRYbUFsNkFVQktTVGtlSHR1OXJ5ajBqQlRGWXNLbTljKy8yY2dmRUl6WXpuZW9yZk85Wm9kUjk1MUNNQT09Iiwia2V5c3RvcmVQYXNzd29yZCI6ImU0ZmEyYTdjMWNhMTg5YjA2MGFjZGExZmRiZGQzODk5Iiwia2V5QWxpYXMiOiIyNzFlMTVjNjczZTE2NTY2OThjMzFmNDMzMDU3Zjc3ZCIsImtleVBhc3N3b3JkIjoiOGMzNjM3YjJkNjA5NzdjMjA3YzVjYmRlNzQ3YzgxNmYifX19LCJ1cGRhdGVzIjp7ImNoYW5uZWwiOiJwcm9kdWN0aW9uIn0sImJ1aWxkVHlwZSI6ImFwayIsInVzZXJuYW1lIjoibWFoaXJvX2F5IiwidmVyc2lvbiI6eyJ2ZXJzaW9uQ29kZSI6IjExIn0sImV4cGVyaW1lbnRhbCI6e30sIm1vZGUiOiJidWlsZCIsInRyaWdnZXJlZEJ5IjoiRUFTX0NMSSIsImFwcElkIjoiYmU2ZTdjY2YtYzA4OC00YTI3LWE1NDgtODljMjlhMWFmMjExIiwiaW5pdGlhdGluZ1VzZXJJZCI6ImQxMWRkY2IxLWMwYmYtNDllYi05M2JlLTMyNDhjYzQ4ZDdjZCJ9LCJtZXRhZGF0YSI6eyJ0cmFja2luZ0NvbnRleHQiOnsidHJhY2tpbmdfaWQiOiI1YTM4M2Q3ZS1hNjE3LTRmYjItYjc0OC01YWYwMDZlZWQ0ZjAiLCJwbGF0Zm9ybSI6ImFuZHJvaWQiLCJzZGtfdmVyc2lvbiI6IjU0LjAuMCIsImFjY291bnRfaWQiOiJjMTAxMWZlNC1lNzdkLTQzY2UtOTRjMy0yMTlmMWNmNmVlZjYiLCJwcm9qZWN0X2lkIjoiYmU2ZTdjY2YtYzA4OC00YTI3LWE1NDgtODljMjlhMWFmMjExIiwicHJvamVjdF90eXBlIjoiZ2VuZXJpYyIsImRldl9jbGllbnQiOmZhbHNlLCJkZXZfY2xpZW50X3ZlcnNpb24iOiI2LjAuMjAiLCJub193YWl0IjpmYWxzZSwicnVuX2Zyb21fY2kiOmZhbHNlLCJsb2NhbCI6dHJ1ZX0sImFwcFZlcnNpb24iOiIxLjAuMCIsImFwcEJ1aWxkVmVyc2lvbiI6IjExIiwiY2xpVmVyc2lvbiI6IjE4LjQuMCIsIndvcmtmbG93IjoiZ2VuZXJpYyIsImNyZWRlbnRpYWxzU291cmNlIjoicmVtb3RlIiwic2RrVmVyc2lvbiI6IjU0LjAuMCIsInJ1bnRpbWVWZXJzaW9uIjoiMS4wLjAiLCJmaW5nZXJwcmludEhhc2giOiIyZmQ2N2MyOGFjY2JiMGZmNmIyZThlNzM5MTE0OWI4MWU2OGVmMzRlIiwicmVhY3ROYXRpdmVWZXJzaW9uIjoiMC44MS41IiwiY2hhbm5lbCI6InByb2R1Y3Rpb24iLCJkaXN0cmlidXRpb24iOiJzdG9yZSIsImFwcE5hbWUiOiJHYW1lQm9vc3RlciIsImFwcElkZW50aWZpZXIiOiJjb20uZ2FtZWJvb3N0ZXIuYXBwIiwiYnVpbGRQcm9maWxlIjoicHJvZHVjdGlvbiIsImdpdENvbW1pdEhhc2giOiIwOTkxOWZkZmVmZGIxN2RjNzgzZTE4YWI1NjlmMjI2MTY0ZTQ4NzRjIiwiZ2l0Q29tbWl0TWVzc2FnZSI6ImZpeDogZW5hYmxlIG5ld0FyY2hFbmFibGVkIGZvciByZWFuaW1hdGVkLCBkaXNhYmxlIHByb2JsZW1hdGljIHBsdWdpbnMsIHVwZGF0ZSBkZXBlbmRlbmNpZXMiLCJpc0dpdFdvcmtpbmdUcmVlRGlydHkiOnRydWUsInVzZXJuYW1lIjoibWFoaXJvX2F5IiwicnVuV2l0aE5vV2FpdEZsYWciOmZhbHNlLCJydW5Gcm9tQ0kiOmZhbHNlLCJkZXZlbG9wbWVudENsaWVudCI6ZmFsc2UsInJlcXVpcmVkUGFja2FnZU1hbmFnZXIiOiJwbnBtIiwic2ltdWxhdG9yIjpmYWxzZX19 exited with non-zero code: 1
+    Error: build command failed.

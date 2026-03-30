@@ -27,8 +27,14 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>GameBooster</string>
+          <string>gamebooster</string>
           <string>com.gamebooster.app</string>
+        </array>
+      </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>exp+gamebooster-pro</string>
         </array>
       </dict>
     </array>
@@ -78,7 +84,7 @@
       <string>$(PRODUCT_BUNDLE_IDENTIFIER).expo.index_route</string>
     </array>
     <key>RCTNewArchEnabled</key>
-    <false/>
+    <true/>
     <key>UIBackgroundModes</key>
     <array>
       <string>fetch</string>
