@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Disable unused resources -->
+    <bool name="abc_config_actionMenuItemAllCaps">false</bool>
+    
+    <!-- Remove unused alternative resources -->
+    <string name="res_config_filter" translatable="false">en,id</string>
+</resources>
