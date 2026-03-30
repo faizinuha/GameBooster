@@ -27,7 +27,7 @@ export const SystemStats = ({ enabled = true }: SystemStatsProps) => {
   }
   
   return (
-    <View style={styles.container}>
+    <View>
       <Text style={styles.title}>System Monitor</Text>
       
       <View style={styles.statsGrid}>
@@ -97,13 +97,6 @@ export const SystemStats = ({ enabled = true }: SystemStatsProps) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: theme.colors.surface,
-    padding: theme.spacing.md,
-    borderRadius: theme.borderRadius.lg,
-    borderWidth: 1,
-    borderColor: theme.colors.border,
-  },
   title: {
     fontSize: theme.fontSize.md,
     fontWeight: theme.fontWeight.semibold,

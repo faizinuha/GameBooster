@@ -1,0 +1,9 @@
+export { AnimatedBackground } from './AnimatedBackground';
+export { GlassCard } from './GlassCard';
+export { QuickStatsCarousel } from './QuickStatsCarousel';
+export { RecentGamesSection } from './RecentGamesSection';
+export { GamingTips } from './GamingTips';
+export { AppCard } from './AppCard';
+export { BoostControl } from './BoostControl';
+export { AddAppModal } from './AddAppModal';
+export { LaunchingAnimation } from './LaunchingAnimation';

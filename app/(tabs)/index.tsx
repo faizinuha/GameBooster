@@ -3,17 +3,22 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { MaterialIcons } from '@expo/vector-icons';
 import { useState, useEffect } from 'react';
 import { useRouter } from 'expo-router';
+import Animated, { FadeIn } from 'react-native-reanimated';
 import { theme } from '../../constants/theme';
 import { commonStyles } from '../../constants/styles';
 import { useApps } from '../../hooks/useApps';
 import { useBoostContext } from '../../hooks/useBoostContext';
-import { StatCard } from '../../components/ui/StatCard';
 import { BoostControl } from '../../components/dashboard/BoostControl';
 import { AppCard } from '../../components/dashboard/AppCard';
 import { AddAppModal } from '../../components/dashboard/AddAppModal';
 import { FloatingBubble } from '../../components/overlay/FloatingBubble';
 import { SystemStats } from '../../components/system/SystemStats';
 import { TutorialModal } from '../../components/system/TutorialModal';
+import { AnimatedBackground } from '../../components/dashboard/AnimatedBackground';
+import { GlassCard } from '../../components/dashboard/GlassCard';
+import { QuickStatsCarousel } from '../../components/dashboard/QuickStatsCarousel';
+import { RecentGamesSection } from '../../components/dashboard/RecentGamesSection';
+import { GamingTips } from '../../components/dashboard/GamingTips';
 import { openDNDSettings } from '../../services/systemService';
 import { PingDisplay } from '../../components/network/PingDisplay';
 import { LaunchingAnimation } from '../../components/dashboard/LaunchingAnimation';
@@ -98,9 +103,10 @@ export default function DashboardScreen() {
   
   return (
     <View style={[commonStyles.container, { paddingTop: insets.top }]}>
+      <AnimatedBackground isBoosting={isBoosting} />
       <ScrollView showsVerticalScrollIndicator={false}>
         {/* Header */}
-        <View style={styles.header}>
+        <Animated.View entering={FadeIn.delay(100)} style={styles.header}>
           <View>
             <Text style={styles.greeting}>Core Engine</Text>
             <Text style={styles.subtitle}>System performance optimized</Text>
@@ -115,88 +121,108 @@ export default function DashboardScreen() {
               />
             </Pressable>
           </View>
-        </View>
+        </Animated.View>
         
         {/* System Monitor */}
-        <View style={styles.section}>
-          <SystemStats enabled={isBoosting} />
-        </View>
+        <Animated.View entering={FadeIn.delay(200)} style={styles.section}>
+          <GlassCard variant={isBoosting ? 'success' : 'default'}>
+            <SystemStats enabled={isBoosting} />
+          </GlassCard>
+        </Animated.View>
         
-        {/* Stats */}
-        {stats && (
-          <View style={styles.statsContainer}>
-            <StatCard 
-              icon="cleaning-services" 
-              label="Cache Dibersihkan" 
-              value={`${stats.cacheCleared}MB`}
-              color={theme.colors.primary}
+        {/* Quick Stats Carousel */}
+        <Animated.View entering={FadeIn.delay(300)}>
+          <QuickStatsCarousel stats={stats} isBoosting={isBoosting} />
+        </Animated.View>
+        
+        {/* Gaming Tips */}
+        <Animated.View entering={FadeIn.delay(400)}>
+          <GamingTips 
+            stats={stats} 
+            isBoosting={isBoosting} 
+            selectedAppsCount={selectedApps.length}
+          />
+        </Animated.View>
+        
+        {/* Recent Games Section */}
+        {selectedApps.length > 0 && (
+          <Animated.View entering={FadeIn.delay(500)}>
+            <RecentGamesSection 
+              selectedApps={selectedApps}
+              onLaunchApp={handleLaunchApp}
             />
-            <StatCard 
-              icon="block" 
-              label="Notif Diblokir" 
-              value={stats.notificationsBlocked}
-              color={theme.colors.danger}
-            />
-          </View>
+          </Animated.View>
         )}
         
         {/* Quick Actions */}
-        <View style={styles.section}>
+        <Animated.View entering={FadeIn.delay(600)} style={styles.section}>
           <Text style={styles.sectionTitle}>Quick Actions</Text>
           
           <View style={styles.actionsGrid}>
             <Pressable
               style={({ pressed }) => [
-                styles.actionCard,
                 pressed && styles.actionPressed,
               ]}
               onPress={clearCache}
               disabled={isLoading}
             >
-              <MaterialIcons name="cleaning-services" size={24} color={theme.colors.primary} />
-              <Text style={styles.actionTitle}>Clear Cache</Text>
-              <Text style={styles.actionSubtitle}>Bersihkan cache app</Text>
+              <GlassCard>
+                <View style={styles.actionContent}>
+                  <MaterialIcons name="cleaning-services" size={24} color={theme.colors.primary} />
+                  <Text style={styles.actionTitle}>Clear Cache</Text>
+                  <Text style={styles.actionSubtitle}>Bersihkan cache app</Text>
+                </View>
+              </GlassCard>
             </Pressable>
             
             <Pressable
               style={({ pressed }) => [
-                styles.actionCard,
                 pressed && styles.actionPressed,
               ]}
               onPress={() => openDNDSettings()}
             >
-              <MaterialIcons name="do-not-disturb-on" size={24} color={theme.colors.warning} />
-              <Text style={styles.actionTitle}>Do Not Disturb</Text>
-              <Text style={styles.actionSubtitle}>Block notifikasi</Text>
+              <GlassCard>
+                <View style={styles.actionContent}>
+                  <MaterialIcons name="do-not-disturb-on" size={24} color={theme.colors.warning} />
+                  <Text style={styles.actionTitle}>Do Not Disturb</Text>
+                  <Text style={styles.actionSubtitle}>Block notifikasi</Text>
+                </View>
+              </GlassCard>
             </Pressable>
           </View>
           
           <View style={styles.actionsGrid}>
             <Pressable
               style={({ pressed }) => [
-                styles.actionCard,
                 pressed && styles.actionPressed,
               ]}
               onPress={() => setTutorialType('cache')}
             >
-              <MaterialIcons name="help-outline" size={24} color={theme.colors.textSecondary} />
-              <Text style={styles.actionTitle}>Tutorial Cache</Text>
-              <Text style={styles.actionSubtitle}>Cara manual</Text>
+              <GlassCard>
+                <View style={styles.actionContent}>
+                  <MaterialIcons name="help-outline" size={24} color={theme.colors.textSecondary} />
+                  <Text style={styles.actionTitle}>Tutorial Cache</Text>
+                  <Text style={styles.actionSubtitle}>Cara manual</Text>
+                </View>
+              </GlassCard>
             </Pressable>
             
             <Pressable
               style={({ pressed }) => [
-                styles.actionCard,
                 pressed && styles.actionPressed,
               ]}
               onPress={() => setTutorialType('overlay')}
             >
-              <MaterialIcons name="bubble-chart" size={24} color={theme.colors.textSecondary} />
-              <Text style={styles.actionTitle}>Tutorial Bubble</Text>
-              <Text style={styles.actionSubtitle}>Enable overlay</Text>
+              <GlassCard>
+                <View style={styles.actionContent}>
+                  <MaterialIcons name="bubble-chart" size={24} color={theme.colors.textSecondary} />
+                  <Text style={styles.actionTitle}>Tutorial Bubble</Text>
+                  <Text style={styles.actionSubtitle}>Enable overlay</Text>
+                </View>
+              </GlassCard>
             </Pressable>
           </View>
-        </View>
+        </Animated.View>
         
         {/* Boost Control */}
         <View style={styles.section}>
@@ -392,13 +418,7 @@ const styles = StyleSheet.create({
     gap: theme.spacing.md,
     marginBottom: theme.spacing.md,
   },
-  actionCard: {
-    flex: 1,
-    backgroundColor: theme.colors.surface,
-    padding: theme.spacing.md,
-    borderRadius: theme.borderRadius.lg,
-    borderWidth: 1,
-    borderColor: theme.colors.border,
+  actionContent: {
     alignItems: 'center',
     gap: theme.spacing.xs,
   },
